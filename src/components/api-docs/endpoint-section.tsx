@@ -20,8 +20,14 @@ export function EndpointSection() {
         </div>
         <div className="flex items-center gap-2">
           <span className="text-zinc-500">Authentication:</span>
-          <span className="text-zinc-300">None (public)</span>
+          <span className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">
+            Bearer token
+          </span>
+          <code className="text-xs text-zinc-500">dk_live_...</code>
         </div>
+        <p className="mt-2 text-xs text-zinc-500">
+          Required for full response. Limited summary available without key.
+        </p>
       </div>
     </div>
   );

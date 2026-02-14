@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, RotateCcw } from "lucide-react";
+import { ArrowLeft, RotateCcw, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { AnalysisResult } from "@/lib/types";
 import { OverallScore } from "./overall-score";
@@ -44,10 +44,42 @@ export function ResultsDashboard({ result, onReset }: ResultsDashboardProps) {
 
       <OverallScore result={result} />
 
+      {/* Gate overlay */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="relative rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 backdrop-blur"
+      >
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="flex size-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800">
+            <Lock className="size-6 text-zinc-400" />
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-zinc-100">
+              Unlock Full Report
+            </h3>
+            <p className="mx-auto mt-1 max-w-md text-sm text-zinc-400">
+              Subscribe to see detailed issues, recommendations, and category
+              breakdowns for every review guideline.
+            </p>
+          </div>
+          <Button
+            asChild
+            className="bg-gradient-to-r from-emerald-500 to-cyan-500 font-semibold text-white shadow-lg shadow-emerald-500/20 hover:brightness-110"
+          >
+            <Link href="/api-docs#pricing">View Plans</Link>
+          </Button>
+        </div>
+      </motion.div>
+
+      {/* Blurred category breakdown */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
+        className="pointer-events-none select-none blur-sm"
+        aria-hidden
       >
         <h2 className="mb-4 text-lg font-semibold text-zinc-200">
           Category Breakdown

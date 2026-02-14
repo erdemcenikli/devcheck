@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 
 export function Header() {
   return (
@@ -21,8 +22,19 @@ export function Header() {
             href="/api-docs"
             className="hidden text-sm text-zinc-400 transition-colors hover:text-zinc-100 sm:block"
           >
-            API
+            API &amp; Pricing
           </Link>
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="hidden text-sm text-zinc-400 hover:text-zinc-100 sm:flex"
+          >
+            <a href="#">
+              <User className="mr-1 size-3.5" />
+              Sign In
+            </a>
+          </Button>
           <Button asChild size="sm">
             <Link href="/check">Start Check</Link>
           </Button>

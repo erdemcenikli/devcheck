@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { Badge } from "@/components/ui/badge";
 import { EndpointSection } from "@/components/api-docs/endpoint-section";
 import { RequestFieldsTable } from "@/components/api-docs/request-fields-table";
 import { CodeBlock } from "@/components/api-docs/code-block";
-import { ResponseSchema } from "@/components/api-docs/response-schema";
 import { CategoriesGrid } from "@/components/api-docs/categories-grid";
+import { ApiHero } from "@/components/api-docs/api-hero";
+import { AuthSection } from "@/components/api-docs/auth-section";
+import { PricingSection } from "@/components/api-docs/pricing-section";
+import { ResponseComparison } from "@/components/api-docs/response-comparison";
+import { GatedResponseSchema } from "@/components/api-docs/gated-response-schema";
+import { RateLimitSection } from "@/components/api-docs/rate-limit-section";
 
 export const metadata: Metadata = {
-  title: "API Documentation — DevCheck",
+  title: "API & Pricing — DevCheck",
   description:
     "Integrate App Store review checks into your CI/CD pipeline with the DevCheck API. Analyze Info.plist, privacy manifests, metadata, and more.",
 };
 
 const curlExample = `curl -X POST https://devcheck.app/api/analyze \\
+  -H "Authorization: Bearer dk_live_your_api_key" \\
   -F "infoPlist=@Info.plist" \\
   -F "privacyManifest=@PrivacyInfo.xcprivacy" \\
   -F 'metadata={"appName":"MyApp","description":"A great app","keywords":"productivity,tools","primaryCategory":"Utilities","ageRating":"4+"}' \\
@@ -20,41 +25,6 @@ const curlExample = `curl -X POST https://devcheck.app/api/analyze \\
   -F "screenshots=@screenshot2.png" \\
   -F 'screenshotDimensions=[{"width":1290,"height":2796,"name":"screenshot1.png"},{"width":1290,"height":2796,"name":"screenshot2.png"}]' \\
   -F 'answers={"q1":"yes","q2":"no"}'`;
-
-const successExample = `{
-  "success": true,
-  "data": {
-    "overallScore": 82,
-    "grade": "B",
-    "verdict": "needs-work",
-    "verdictText": "Your app needs some improvements before submission.",
-    "categories": [
-      {
-        "categoryId": "app-completeness",
-        "score": 90,
-        "maxScore": 100,
-        "percentage": 90,
-        "issues": [],
-        "checkedItems": 5
-      }
-    ],
-    "issues": [
-      {
-        "id": "metadata-keywords-stuffing",
-        "categoryId": "accurate-metadata",
-        "severity": "warning",
-        "title": "Possible keyword stuffing",
-        "description": "Keywords field may contain duplicate or irrelevant terms.",
-        "guidelineSection": "2.3",
-        "guidelineUrl": "https://developer.apple.com/app-store/review/guidelines/#performance",
-        "recommendation": "Use unique, relevant keywords separated by commas.",
-        "source": "file-analysis"
-      }
-    ],
-    "hasCritical": false,
-    "generatedAt": "2026-01-15T10:30:00.000Z"
-  }
-}`;
 
 const errorExample = `{
   "success": false,
@@ -66,6 +36,10 @@ function CurlHighlighted() {
     <>
       <span className="text-cyan-400">curl</span>
       <span className="text-zinc-300"> -X POST https://devcheck.app/api/analyze \</span>
+      {"\n"}
+      <span className="text-zinc-300">  -H </span>
+      <span className="text-amber-400">{'"Authorization: Bearer dk_live_your_api_key"'}</span>
+      <span className="text-zinc-300"> \</span>
       {"\n"}
       <span className="text-zinc-300">  -F </span>
       <span className="text-amber-400">{'"infoPlist=@Info.plist"'}</span>
@@ -199,24 +173,14 @@ export default function ApiDocsPage() {
   return (
     <main className="min-h-screen bg-zinc-950 px-4 py-12 sm:px-6">
       <div className="mx-auto max-w-4xl space-y-10">
-        {/* Title */}
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold text-zinc-100 sm:text-4xl">
-              API Documentation
-            </h1>
-            <Badge variant="secondary" className="bg-zinc-800 text-zinc-300">
-              v1
-            </Badge>
-          </div>
-          <p className="mt-3 text-zinc-400">
-            Integrate App Store review checks into your CI/CD pipeline.
-            Submit files and metadata, get back a detailed compliance report.
-          </p>
-        </div>
+        {/* Hero */}
+        <ApiHero />
 
         {/* Endpoint */}
         <EndpointSection />
+
+        {/* Authentication */}
+        <AuthSection />
 
         {/* Request Fields */}
         <RequestFieldsTable />
@@ -229,23 +193,29 @@ export default function ApiDocsPage() {
           </CodeBlock>
         </div>
 
-        {/* Response Schema */}
-        <ResponseSchema />
+        {/* Response Comparison (Free vs Pro) */}
+        <ResponseComparison />
 
-        {/* Response Examples */}
+        {/* Gated Response Schema */}
+        <GatedResponseSchema />
+
+        {/* Error Example */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-zinc-100">
-            Response Examples
+            Error Response
           </h3>
-          <CodeBlock label="Success (200)" language="JSON" code={successExample}>
-            <JsonHighlighted json={successExample} variant="success" />
-          </CodeBlock>
           <CodeBlock label="Error (400 / 500)" language="JSON" code={errorExample}>
             <JsonHighlighted json={errorExample} variant="error" />
           </CodeBlock>
         </div>
 
-        {/* Categories */}
+        {/* Pricing */}
+        <PricingSection />
+
+        {/* Rate Limits */}
+        <RateLimitSection />
+
+        {/* Categories (moved to bottom) */}
         <CategoriesGrid />
       </div>
     </main>

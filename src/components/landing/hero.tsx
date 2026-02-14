@@ -54,7 +54,7 @@ export function Hero() {
             className="h-12 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-8 text-base font-semibold text-white shadow-lg shadow-emerald-500/20 transition-shadow hover:shadow-emerald-500/30 hover:brightness-110"
           >
             <Link href="/check">
-              Start Free Check
+              Try Free Check
               <ArrowRight className="size-4" />
             </Link>
           </Button>
