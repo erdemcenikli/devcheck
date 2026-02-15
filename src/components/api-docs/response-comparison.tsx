@@ -162,8 +162,8 @@ export function ResponseComparison() {
                 <button
                     onClick={() => setActiveTab("free")}
                     className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${activeTab === "free"
-                            ? "bg-zinc-700 text-zinc-100"
-                            : "text-zinc-400 hover:text-zinc-300"
+                        ? "bg-zinc-700 text-zinc-100"
+                        : "text-zinc-400 hover:text-zinc-300"
                         }`}
                 >
                     Free Response
@@ -171,8 +171,8 @@ export function ResponseComparison() {
                 <button
                     onClick={() => setActiveTab("pro")}
                     className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${activeTab === "pro"
-                            ? "bg-zinc-700 text-zinc-100"
-                            : "text-zinc-400 hover:text-zinc-300"
+                        ? "bg-zinc-700 text-zinc-100"
+                        : "text-zinc-400 hover:text-zinc-300"
                         }`}
                 >
                     Pro Response
@@ -235,7 +235,7 @@ export function ResponseComparison() {
                                 size="sm"
                                 className="bg-gradient-to-r from-emerald-500 to-cyan-500 font-semibold text-white shadow-lg shadow-emerald-500/20 hover:brightness-110"
                             >
-                                <a href="#pricing">View Plans</a>
+                                <a href="/pricing">View Plans</a>
                             </Button>
                         </div>
                     </div>

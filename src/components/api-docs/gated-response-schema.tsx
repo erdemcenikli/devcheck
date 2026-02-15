@@ -73,7 +73,7 @@ function BlurOverlay() {
                     size="sm"
                     className="mt-1 bg-gradient-to-r from-emerald-500 to-cyan-500 text-xs font-semibold text-white shadow-lg shadow-emerald-500/20 hover:brightness-110"
                 >
-                    <a href="#pricing">Upgrade to Pro</a>
+                    <a href="/pricing">Upgrade to Pro</a>
                 </Button>
             </div>
         </div>

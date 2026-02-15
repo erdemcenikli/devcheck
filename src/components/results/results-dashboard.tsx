@@ -68,7 +68,7 @@ export function ResultsDashboard({ result, onReset }: ResultsDashboardProps) {
             asChild
             className="bg-gradient-to-r from-emerald-500 to-cyan-500 font-semibold text-white shadow-lg shadow-emerald-500/20 hover:brightness-110"
           >
-            <Link href="/api-docs#pricing">View Plans</Link>
+            <Link href="/pricing">View Plans</Link>
           </Button>
         </div>
       </motion.div>

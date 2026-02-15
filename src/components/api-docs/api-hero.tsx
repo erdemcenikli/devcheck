@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -62,10 +63,10 @@ export function ApiHero() {
                         size="lg"
                         className="h-12 rounded-full border-zinc-700 px-8 text-base"
                     >
-                        <a href="#pricing">
+                        <Link href="/pricing">
                             <ArrowRight className="size-4" />
                             View Pricing
-                        </a>
+                        </Link>
                     </Button>
                 </motion.div>
             </div>

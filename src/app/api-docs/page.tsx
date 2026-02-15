@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { EndpointSection } from "@/components/api-docs/endpoint-section";
 import { RequestFieldsTable } from "@/components/api-docs/request-fields-table";
 import { CodeBlock } from "@/components/api-docs/code-block";
 import { CategoriesGrid } from "@/components/api-docs/categories-grid";
 import { ApiHero } from "@/components/api-docs/api-hero";
 import { AuthSection } from "@/components/api-docs/auth-section";
-import { PricingSection } from "@/components/api-docs/pricing-section";
 import { ResponseComparison } from "@/components/api-docs/response-comparison";
 import { GatedResponseSchema } from "@/components/api-docs/gated-response-schema";
 import { RateLimitSection } from "@/components/api-docs/rate-limit-section";
@@ -209,8 +210,20 @@ export default function ApiDocsPage() {
           </CodeBlock>
         </div>
 
-        {/* Pricing */}
-        <PricingSection />
+        {/* Pricing CTA */}
+        <div id="pricing" className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 text-center backdrop-blur">
+          <h3 className="text-xl font-bold text-zinc-100">Ready to integrate?</h3>
+          <p className="mx-auto mt-2 max-w-md text-sm text-zinc-400">
+            Choose a plan that fits your needs — from free tier to team-scale.
+          </p>
+          <Link
+            href="/pricing"
+            className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-emerald-500/30 hover:brightness-110"
+          >
+            See Plans & Pricing
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
 
         {/* Rate Limits */}
         <RateLimitSection />
